@@ -1,7 +1,7 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class Users extends BaseEntity {
+export class Labels extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 
@@ -9,8 +9,8 @@ export class Users extends BaseEntity {
   name!: string;
 
   @Column()
-  username!: string;
+  timestampCreated!: string;
 
   @Column()
-  password!: string;
+  timestampUpdated!: string;
 }

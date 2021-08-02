@@ -3,7 +3,7 @@ import { graphqlHTTP } from "express-graphql";
 import { schema } from "./Schema";
 import cors from "cors";
 import { createConnection } from "typeorm";
-import { Users } from "./Entities/Users";
+import { Labels } from "./Entities/Labels";
 
 const main = async () => {
   await createConnection({
@@ -15,7 +15,7 @@ const main = async () => {
     logging: true,
     //possible bugged: Creates duplicates of tables
     synchronize: true,
-    entities: [Users], //Needed for every table
+    entities: [Labels], //Needed for every table
   });
 
   const app = express();
