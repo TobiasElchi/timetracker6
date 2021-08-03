@@ -4,6 +4,8 @@ import { schema } from "./Schema";
 import cors from "cors";
 import { createConnection } from "typeorm";
 import { Labels } from "./Entities/Labels";
+import {Tasks} from "./Entities/Tasks";
+import {Trackings} from "./Entities/Trackings";
 
 const main = async () => {
   await createConnection({
@@ -13,9 +15,8 @@ const main = async () => {
     username: "root",
     password: "123456",
     logging: true,
-    //possible bugged: Creates duplicates of tables
     synchronize: true,
-    entities: [Labels], //Needed for every table
+    entities: [Tasks, Labels, Trackings] //Needed for every table
   });
 
   const app = express();

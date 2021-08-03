@@ -1,5 +1,5 @@
 import { GraphQLList } from "graphql";
-import { LabelType } from "../TypeDefs/Label";
+import { LabelType } from "../TypeDefs/types";
 import { Labels } from "../../Entities/Labels";
 
 //Queries => Read only

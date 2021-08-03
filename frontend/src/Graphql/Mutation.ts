@@ -1,34 +1,34 @@
-import { gql } from "@apollo/client";
+import {gql} from "@apollo/client";
 
-export const CREATE_USER = gql`
-  mutation createUser($name: String!, $username: String!, $password: String!) {
-    createUser(name: $name, username: $username, password: $password) {
+//TODO: Prüfen ob Name vergeben->im backend
+export const CREATE_LABEL = gql`
+  mutation createLabel($name: String!) {
+    createLabel(name: $name) {
       id
       name
-      username
+      timestampCreated
+      timestampUpdated
     }
   }
 `;
 
-export const UPDATE_PASSWORD = gql`
-  mutation updatePassword(
-    $username: String!
-    $oldPassword: String!
-    $newPassword: String!
+export const UPDATE_LABELNAME = gql`
+  mutation updateLabelName(
+    $id: ID!
+    $name: String!
   ) {
-    updatePassword(
-      username: $username
-      oldPassword: $oldPassword
-      newPassword: $newPassword
+    updateLabelName(
+      id: id
+      name: $name
     ) {
       message
     }
   }
 `;
 
-export const DELETE_USER = gql`
-  mutation deleteUser($id: ID!) {
-    deleteUser(id: $id) {
+export const DELETE_LABEL = gql`
+  mutation deleteLabel($id: ID!) {
+    deleteLabel(id: $id) {
       message
     }
   }

@@ -1,10 +1,8 @@
 import React from "react";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-
 import "./App.css";
-import CreateUser from "./Components/CreateUser";
-import ListOfUsers from "./Components/ListOfUsers";
-import UpdatePassword from "./Components/UpdatePassword";
+import CreateLabel from "./Components/CreateLabel";
+import ListOfLabels from "./Components/ListOfLabels";
 
 function App() {
   const client = new ApolloClient({
@@ -13,13 +11,12 @@ function App() {
   });
 
   return (
-    <>
+    <header className="App-header">
       <ApolloProvider client={client}>
-        <CreateUser />
-        <ListOfUsers />
-        <UpdatePassword />
+        <CreateLabel />
+        <ListOfLabels />
       </ApolloProvider>
-    </>
+    </header>
   );
 }
 
