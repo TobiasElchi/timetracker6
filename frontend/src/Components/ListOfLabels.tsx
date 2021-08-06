@@ -1,6 +1,6 @@
 import React from "react";
 import {GET_ALL_LABELS} from "../Graphql/Queries";
-import {DELETE_LABEL, UPDATE_LABELNAME} from "../Graphql/Mutation";
+import {DELETE_LABEL, UPDATE_LABELNAME} from "../Graphql/Mutations";
 import {useQuery, useMutation} from "@apollo/client";
 
 function ListOfLabels() {

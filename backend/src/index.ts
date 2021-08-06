@@ -3,9 +3,9 @@ import { graphqlHTTP } from "express-graphql";
 import { schema } from "./Schema";
 import cors from "cors";
 import { createConnection } from "typeorm";
-import { Labels } from "./Entities/Labels";
-import {Tasks} from "./Entities/Tasks";
-import {Trackings} from "./Entities/Trackings";
+import { LabelEntity } from "./Entities/LabelEntity";
+import {TrackingEntity} from "./Entities/TrackingEntity";
+import {TaskEntity} from "./Entities/TaskEntity";
 
 const main = async () => {
   await createConnection({
@@ -16,7 +16,7 @@ const main = async () => {
     password: "123456",
     logging: true,
     synchronize: true,
-    entities: [Tasks, Labels, Trackings] //Needed for every table
+    entities: [TaskEntity, LabelEntity, TrackingEntity] //Needed for every table
   });
 
   const app = express();

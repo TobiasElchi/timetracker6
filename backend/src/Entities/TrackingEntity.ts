@@ -1,15 +1,18 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class Tasks extends BaseEntity {
+export class TrackingEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 
   @Column()
-  name!: string;
+  description!: string;
 
   @Column()
-  description!: string;
+  starttime!: string;
+
+  @Column()
+  endtime!: string;
 
   @Column()
   timestampCreated!: string;

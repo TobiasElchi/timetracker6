@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { CREATE_LABEL } from "../Graphql/Mutation";
+import { CREATE_LABEL } from "../Graphql/Mutations";
 import { useMutation } from "@apollo/client";
+
 function CreateLabel() {
   const [name, setName] = useState("");
-  const [createUser, { error }] = useMutation(CREATE_LABEL);
+  const [createTask, { error }] = useMutation(CREATE_LABEL);
 
   return (
     <div className="createLabel">
@@ -16,7 +17,7 @@ function CreateLabel() {
       />
       <button
         onClick={() => {
-          createUser({
+          createTask({
             variables: {
               name: name,
             },

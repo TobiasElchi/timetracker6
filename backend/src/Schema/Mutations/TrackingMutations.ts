@@ -1,6 +1,6 @@
-import {GraphQLID, GraphQLInt, GraphQLString} from "graphql";
-import { MessageType } from "../TypeDefs/Messages";
-import {Trackings} from "../../Entities/Trackings";
+import {GraphQLID, GraphQLString} from "graphql";
+import {MessageType} from "../TypeDefs/Messages";
+import {TrackingEntity} from "../../Entities/TrackingEntity";
 import {TrackingType} from "../TypeDefs/types";
 
 //Mutations => Create,Update,Delete
@@ -13,7 +13,7 @@ export const CREATE_TRACKING = {
     const { description } = args;
     const timeElapsed = Date.now()
     const currentTime = new Date (timeElapsed).toUTCString()
-    await Trackings.insert({description, timestampCreated: currentTime, timestampUpdated: currentTime , starttime:0,endtime:0});
+    await TrackingEntity.insert({description, timestampCreated: currentTime, timestampUpdated: currentTime, starttime: "", endtime: ""});
     return args;
   },
 };
@@ -27,18 +27,18 @@ export const UPDATE_TRACKING_DESCRIPTION = {
   },
   async resolve(parent: any, args: any) {
     const { description, id} = args;
-    const tracking = await Trackings.findOne({id: id});
+    const tracking = await TrackingEntity.findOne({id: id});
     if (!tracking) {
       throw new Error("TRACKING NOT FOUND");
     }
     const trackingID = tracking?.id;
-    await Trackings.update({ id: id }, { description: description });
+    await TrackingEntity.update({ id: id }, { description: description });
     //Automatically update the timestamp
     const timeElapsed = Date.now()
     const currentTime = new Date (timeElapsed).toUTCString()
-    await Trackings.update({ id: id }, {timestampUpdated: currentTime});
-    await Trackings.update({ id: id }, {description: description});
-    return { successful: true, message: "TRACKINGNAME UPDATED" };
+    await TrackingEntity.update({ id: id }, {timestampUpdated: currentTime});
+    await TrackingEntity.update({ id: id }, {description: description});
+    return { successful: true, message: "TRACKING DESCRIPTION UPDATED" };
   },
 };
 
@@ -47,11 +47,11 @@ export const UPDATE_TRACKING_STARTTIME = {
   args: {
     id: { type: GraphQLID },
     timestampUpdated: { type: GraphQLString },
-    starttime: {type: GraphQLInt}
+    starttime: {type: GraphQLString}
   },
   async resolve(parent: any, args: any) {
     const {id} = args;
-    const tracking = await Trackings.findOne({id: id});
+    const tracking = await TrackingEntity.findOne({id: id});
     if (!tracking) {
       throw new Error("TRACKING NOT FOUND");
     }
@@ -59,8 +59,8 @@ export const UPDATE_TRACKING_STARTTIME = {
     //Automatically update the timestamp
     const timeElapsed = Date.now()
     const currentTime = new Date (timeElapsed).toUTCString()
-    await Trackings.update({ id: id }, {timestampUpdated: currentTime});
-    await Trackings.update({ id: id }, {starttime: timeElapsed});
+    await TrackingEntity.update({ id: id }, {timestampUpdated: currentTime});
+    await TrackingEntity.update({ id: id }, {starttime: currentTime});
     return { successful: true, message: "TRACKING STARTTIME UPDATED" };
   },
 };
@@ -70,11 +70,11 @@ export const UPDATE_TRACKING_EDNDTIME = {
   args: {
     id: { type: GraphQLID },
     timestampUpdated: { type: GraphQLString },
-    endtime: {type: GraphQLInt}
+    endtime: {type: GraphQLString}
   },
   async resolve(parent: any, args: any) {
     const {id} = args;
-    const tracking = await Trackings.findOne({id: id});
+    const tracking = await TrackingEntity.findOne({id: id});
     if (!tracking) {
       throw new Error("TRACKING NOT FOUND");
     }
@@ -82,8 +82,8 @@ export const UPDATE_TRACKING_EDNDTIME = {
     //Automatically update the timestamp
     const timeElapsed = Date.now()
     const currentTime = new Date (timeElapsed).toUTCString()
-    await Trackings.update({ id: id }, {timestampUpdated: currentTime});
-    await Trackings.update({ id: id }, {endtime: timeElapsed});
+    await TrackingEntity.update({ id: id }, {timestampUpdated: currentTime});
+    await TrackingEntity.update({ id: id }, {endtime: currentTime});
     return { successful: true, message: "TRACKING STARTTIME UPDATED" };
   },
 };
@@ -95,7 +95,7 @@ export const DELETE_TRACKING = {
   },
   async resolve(parent: any, args: any) {
     const id = args.id;
-    await Trackings.delete(id);
+    await TrackingEntity.delete(id);
     return { successful: true, message: "TRACKING DELETED" };
   },
 };

@@ -1,7 +1,7 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class Labels extends BaseEntity {
+export class LabelEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 

@@ -1,6 +1,6 @@
 import { GraphQLID, GraphQLString } from "graphql";
 import { MessageType } from "../TypeDefs/Messages";
-import {Tasks} from "../../Entities/Tasks";
+import {TaskEntity} from "../../Entities/TaskEntity";
 import {TaskType} from "../TypeDefs/types";
 
 //Mutations => Create,Update,Delete
@@ -14,7 +14,7 @@ export const CREATE_TASK = {
     const { name, description } = args;
     const timeElapsed = Date.now()
     const currentTime = new Date (timeElapsed).toUTCString()
-    await Tasks.insert({ name,description, timestampCreated: currentTime, timestampUpdated: currentTime });
+    await TaskEntity.insert({ name,description, timestampCreated: currentTime, timestampUpdated: currentTime });
     return args;
   },
 };
@@ -28,16 +28,16 @@ export const UPDATE_TASKNAME = {
   },
   async resolve(parent: any, args: any) {
     const { name, id} = args;
-    const task = await Tasks.findOne({id: id});
+    const task = await TaskEntity.findOne({id: id});
     if (!task) {
       throw new Error("TASK NOT FOUND");
     }
     const taskID = task?.id;
-    await Tasks.update({ id: id }, { name: name });
+    await TaskEntity.update({ id: id }, { name: name });
     //Automatically update the timestamp
     const timeElapsed = Date.now()
     const currentTime = new Date (timeElapsed).toUTCString()
-    await Tasks.update({ id: id }, {timestampUpdated: currentTime});
+    await TaskEntity.update({ id: id }, {timestampUpdated: currentTime});
     return { successful: true, message: "TASKNAME UPDATED" };
   },
 };
@@ -51,17 +51,17 @@ export const UPDATE_TASK_DESCRIPTION = {
   },
   async resolve(parent: any, args: any) {
     const { description, id} = args;
-    const task = await Tasks.findOne({id: id});
+    const task = await TaskEntity.findOne({id: id});
     if (!task) {
       throw new Error("TASK NOT FOUND");
     }
     const taskID = task?.id;
-    await Tasks.update({ id: id }, { description: description });
+    await TaskEntity.update({ id: id }, { description: description });
     //Automatically update the timestamp
     const timeElapsed = Date.now()
     const currentTime = new Date (timeElapsed).toUTCString()
-    await Tasks.update({ id: id }, {timestampUpdated: currentTime});
-    return { successful: true, message: "TASKNAME UPDATED" };
+    await TaskEntity.update({ id: id }, {timestampUpdated: currentTime});
+    return { successful: true, message: "TASK DESCRIPTION UPDATED" };
   },
 };
 
@@ -72,7 +72,7 @@ export const DELETE_TASK = {
   },
   async resolve(parent: any, args: any) {
     const id = args.id;
-    await Tasks.delete(id);
+    await TaskEntity.delete(id);
     return { successful: true, message: "TASK DELETED" };
   },
 };

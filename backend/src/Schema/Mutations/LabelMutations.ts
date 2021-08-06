@@ -1,7 +1,7 @@
 import { GraphQLID, GraphQLString } from "graphql";
 import { LabelType } from "../TypeDefs/types";
 import { MessageType } from "../TypeDefs/Messages";
-import { Labels } from "../../Entities/Labels";
+import { LabelEntity } from "../../Entities/LabelEntity";
 import {DateUtils} from "typeorm/util/DateUtils";
 
 //Mutations => Create,Update,Delete
@@ -14,7 +14,7 @@ export const CREATE_LABEL = {
     const { name } = args;
     const timeElapsed = Date.now()
     const currentTime = new Date (timeElapsed).toUTCString()
-    await Labels.insert({ name, timestampCreated: currentTime, timestampUpdated: currentTime });
+    await LabelEntity.insert({ name, timestampCreated: currentTime, timestampUpdated: currentTime });
     return args;
   },
 };
@@ -28,16 +28,16 @@ export const UPDATE_LABELNAME = {
   },
   async resolve(parent: any, args: any) {
     const { name, id} = args;
-    const label = await Labels.findOne({id: id});
+    const label = await LabelEntity.findOne({id: id});
     if (!label) {
       throw new Error("LABEL NOT FOUND");
     }
     const labelID = label?.id;
-    await Labels.update({ id: id }, { name: name });
+    await LabelEntity.update({ id: id }, { name: name });
     //Automatically update the timestamp
     const timeElapsed = Date.now()
     const currentTime = new Date (timeElapsed).toUTCString()
-    await Labels.update({ id: id }, {timestampUpdated: currentTime});
+    await LabelEntity.update({ id: id }, {timestampUpdated: currentTime});
     return { successful: true, message: "LABELNAME UPDATED" };
   },
 };
@@ -49,7 +49,7 @@ export const DELETE_LABEL = {
   },
   async resolve(parent: any, args: any) {
     const id = args.id;
-    await Labels.delete(id);
+    await LabelEntity.delete(id);
     return { successful: true, message: "LABEL DELETED" };
   },
 };
