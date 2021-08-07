@@ -20,9 +20,9 @@ function App() {
                 <header className="App-header">
                     <h1>Task Manager</h1>
                     <nav>
-                        <ul className= "LinkList">
+                        <ul className="LinkList">
                             <li>
-                                <Link className="a"to={urls.tasks}>Tasks</Link>
+                                <Link className="a" to={urls.tasks}>Tasks</Link>
                             </li>
                             <li>
                                 <Link to={urls.labels}>Labels</Link>

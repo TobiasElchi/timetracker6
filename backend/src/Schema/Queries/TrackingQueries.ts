@@ -6,7 +6,7 @@ import {TrackingType} from "../TypeDefs/TrackingType";
 
 export const GET_ALL_TRACKINGS = {
     type: new GraphQLList(TrackingType),
-    resolve(){
+    resolve() {
         return TrackingEntity.find();
     },
 };
@@ -14,7 +14,7 @@ export const GET_ALL_TRACKINGS = {
 export const GET_ALL_TRACKINGS_BY_TASKID = {
     type: new GraphQLList(TrackingType),
     args: {
-      taskid: {type: GraphQLString}
+        taskid: {type: GraphQLString}
     },
     async resolve(parent: any, args: any) {
         const {taskid} = args;

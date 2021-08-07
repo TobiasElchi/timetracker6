@@ -4,11 +4,11 @@ import ListOfLabels from "../Components/ListOfLabels";
 
 export const LabelsPage = () => {
     return (
-        <div style={{ display: "flex" }}>
-            <div style={{ flex: "2" }}>
+        <div style={{display: "flex"}}>
+            <div style={{flex: "2"}}>
                 <h1>Labels</h1>
-                <CreateLabel />
-                <ListOfLabels />
+                <CreateLabel/>
+                <ListOfLabels/>
             </div>
         </div>
     );

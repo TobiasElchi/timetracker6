@@ -4,13 +4,14 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import {BrowserRouterProps} from "react-router-dom";
 
-export class BrowserRouter extends React.Component<BrowserRouterProps, any> {}
+export class BrowserRouter extends React.Component<BrowserRouterProps, any> {
+}
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById("root")
+    <React.StrictMode>
+        <App/>
+    </React.StrictMode>,
+    document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

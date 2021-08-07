@@ -1,15 +1,14 @@
 import React from "react";
 import {GET_ALL_TASKS} from "../Graphql/Queries";
-import {DELETE_TASK, UPDATE_TASKNAME} from "../Graphql/MutationsTask";
+import {DELETE_TASK} from "../Graphql/MutationsTask";
 import {useQuery, useMutation} from "@apollo/client";
 import ListOfTrackingsByTask from "./ListOfTrackingsByTask";
 
 function ListOfTasks() {
     const {data} = useQuery(GET_ALL_TASKS, {
         pollInterval: 500
-        });
+    });
     const [deleteTask, {}] = useMutation(DELETE_TASK);
-    const [updateTaskName, {error}] = useMutation(UPDATE_TASKNAME);
     return (
         <div>
             {data &&
@@ -26,6 +25,7 @@ function ListOfTasks() {
                         </button>
                         <li>Created: {task.timestampCreated}</li>
                         <li>Updated: {task.timestampUpdated}</li>
+                        <li>ID: {task.id}</li>
                         <li></li>
                         <div>Trackings of this Task:</div>
                         <ListOfTrackingsByTask{...task}/>

@@ -1,21 +1,20 @@
 import React from "react";
 import {useQuery, useMutation} from "@apollo/client";
 import {GET_ALL_TRACKINGS_BY_TASKID} from "../Graphql/Queries";
-import {GraphQLObjectType} from "graphql";
 import {TaskEntity} from "../../../backend/src/Entities/TaskEntity";
 import {DELETE_TRACKING, UPDATE_TRACKING_STARTTIME, UPDATE_TRACKING_ENDTIME} from "../Graphql/MutationsTracking";
 
 function ListOfTrackingsByTask(task: TaskEntity) {
     const {data} = useQuery(GET_ALL_TRACKINGS_BY_TASKID, {
         variables: {
-            taskid:task.id,
+            taskid: task.id,
             pollInterval: 500
         },
     });
     const [deleteTracking, {}] = useMutation(DELETE_TRACKING);
     const [updateTrackingStarttime] = useMutation(UPDATE_TRACKING_STARTTIME);
     const [updateTrackingEndtime] = useMutation(UPDATE_TRACKING_ENDTIME);
-    return(
+    return (
         <div>
             {data &&
             data.getAllTrackingsByTaskID.map((tracking: any) => {

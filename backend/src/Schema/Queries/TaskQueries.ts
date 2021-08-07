@@ -1,4 +1,4 @@
-import { GraphQLList } from "graphql";
+import {GraphQLList} from "graphql";
 
 import {TaskEntity} from "../../Entities/TaskEntity";
 import {TaskType} from "../TypeDefs/TaskType";
@@ -6,9 +6,8 @@ import {TaskType} from "../TypeDefs/TaskType";
 //Queries => Read only
 
 export const GET_ALL_TASKS = {
-  type: new GraphQLList(TaskType),
-  //TODO: Interface
-  resolve()/*:Promise<InterfaceUser[]>*/ {
-    return TaskEntity.find();
-  },
+    type: new GraphQLList(TaskType),
+    resolve() {
+        return TaskEntity.find();
+    },
 };

@@ -16,15 +16,15 @@ function ListOfTrackings() {
             {data &&
             data.getAllTrackings.map((tracking: any) => {
                 return (
-                    
+
                     <div>
                         <div className="Separator"/>
                         <div className="TrackingBox">{tracking.description}</div>
 
                         <button id={tracking.id}
-                            onClick={() => {
-                                deleteTracking({variables: {id: tracking.id}});
-                            }}
+                                onClick={() => {
+                                    deleteTracking({variables: {id: tracking.id}});
+                                }}
                         > Delete Tracking
                         </button>
                         <button
@@ -43,7 +43,7 @@ function ListOfTrackings() {
                         <li>Updated: {tracking.timestampUpdated}</li>
                         <li>Started: {tracking.starttime}</li>
                         <li>Ended: {tracking.endtime}</li>
-                        <li>TaskID: {tracking.taskid}</li>
+                        <li>ID of corresponding Task: {tracking.taskid}</li>
                     </div>
                 );
             })}

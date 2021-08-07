@@ -25,6 +25,7 @@ export class TrackingEntity extends BaseEntity {
 
 /*  @ManyToOne(() => TaskEntity, task => task.trackings)
   task!: TaskEntity;*/
+
   @Column()
   taskid!:string;
 }
