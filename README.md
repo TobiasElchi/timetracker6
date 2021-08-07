@@ -1,7 +1,7 @@
 # README
 ## Task-Tracker
 
-- This project contains of a task tracking application. It supports CRUD functionality with classes Task, Tracking and Label.
+- This project contains a task tracking application. It supports CRUD functionality with classes Task, Tracking and Label.
 
 ## Technologies used:
 - React
