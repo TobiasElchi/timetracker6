@@ -23,14 +23,13 @@ Create database connection to root/localhost (backend will be using port 3001 an
 - backend> yarn run dev
 To use the CRUD functionality no middleware (e.g. Postman) is needed. Go to http://localhost:3001/graphql to test out all queries and mutations. All available commands can be found under frontend/src/Graphql
 
-Example (This will create a Tracking):
+Example (This list all Trackings):
 
-mutation {
-  createTask(name: "MyTask" description:"The description of the Task") {
-    name
-    description
-  }
-}
+query {getAllTrackings{
+id
+description
+taskid
+}}
 
 ## Running Frontend
 - frontend> yarn start
