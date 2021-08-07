@@ -23,6 +23,10 @@
     font-size: calc(6px + 2vmin);
 }
 
+.TrackingAsPartOfTask{
+    margin-left: 5%;
+}
+
 .LabelBox{
     border-top: 2px solid black;
     font-size: calc(6px + 2vmin);
