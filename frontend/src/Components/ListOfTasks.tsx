@@ -6,7 +6,7 @@ import ListOfTrackingsByTask from "./ListOfTrackingsByTask";
 
 function ListOfTasks() {
     const {data} = useQuery(GET_ALL_TASKS, {
-        pollInterval: 500
+        //pollInterval: 500
         });
     const [deleteTask, {}] = useMutation(DELETE_TASK);
     const [updateTaskName, {error}] = useMutation(UPDATE_TASKNAME);
@@ -26,7 +26,8 @@ function ListOfTasks() {
                         </button>
                         <li>Created: {task.timestampCreated}</li>
                         <li>Updated: {task.timestampUpdated}</li>
-                        <ListOfTrackingsByTask{..."3"}/>
+                        Trackings of this Task:
+                        <ListOfTrackingsByTask{...task}/>
                     </div>
                 );
             })}

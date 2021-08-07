@@ -15,7 +15,7 @@
 ## Setup:
 Create database connection to root/localhost (backend will be using port 3001 and frontend will be using port 3000 by default). Change Username and password in backend/src/index.ts accordingly.
 - backend>yarn init
-- backend>yarn add typescript ts-node express cors nodemon graphql
+- backend>yarn add typescript ts-node express cors nodemon graphql typeorm -g
 - backend> yarn add @types/node @types/cors @types/express
 - frontend>yarn add @apollo/client graphql
 

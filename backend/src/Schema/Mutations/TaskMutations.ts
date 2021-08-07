@@ -32,7 +32,7 @@ export const UPDATE_TASKNAME = {
     if (!task) {
       throw new Error("TASK NOT FOUND");
     }
-    const taskID = task?.id;
+    const taskid = task?.id;
     await TaskEntity.update({ id: id }, { name: name });
     //Automatically update the timestamp
     const timeElapsed = Date.now()
@@ -55,7 +55,7 @@ export const UPDATE_TASK_DESCRIPTION = {
     if (!task) {
       throw new Error("TASK NOT FOUND");
     }
-    const taskID = task?.id;
+    const taskid = task?.id;
     await TaskEntity.update({ id: id }, { description: description });
     //Automatically update the timestamp
     const timeElapsed = Date.now()

@@ -22,7 +22,7 @@ export const GET_ALL_TASKS = gql`
     }
   }
 `;
-export const GET_ALL_TRACKINGS_BY_ID = gql`
+export const GET_ALL_TRACKINGS_BY_TASKID = gql`
   query getAllTrackingsByTaskID($taskid: String!) {
     getAllTrackingsByTaskID(taskid: $taskid) {
       id
@@ -44,7 +44,7 @@ export const GET_ALL_TRACKINGS = gql`
       timestampUpdated
       starttime
       endtime
-      taskID
+      taskid
     }
   }
 `;

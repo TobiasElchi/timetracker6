@@ -19,7 +19,7 @@ export const GET_ALL_TRACKINGS_BY_TASKID = {
     async resolve(parent: any, args: any) {
         const {taskid} = args;
         return TrackingEntity.find({
-            where: {taskID: taskid},
+            where: {taskid: taskid},
         });
     },
 };

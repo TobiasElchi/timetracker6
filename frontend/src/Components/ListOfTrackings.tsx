@@ -5,7 +5,7 @@ import {useQuery, useMutation} from "@apollo/client";
 
 function ListOfTrackings() {
     const {data} = useQuery(GET_ALL_TRACKINGS, {
-        pollInterval: 500,
+        //pollInterval: 500,
     });
     const [deleteTracking, {}] = useMutation(DELETE_TRACKING);
     const [updateTrackingStarttime] = useMutation(UPDATE_TRACKING_STARTTIME);
@@ -43,7 +43,7 @@ function ListOfTrackings() {
                         <li>Updated: {tracking.timestampUpdated}</li>
                         <li>Started: {tracking.starttime}</li>
                         <li>Ended: {tracking.endtime}</li>
-                        <li>TaskID: {tracking.taskID}</li>
+                        <li>TaskID: {tracking.taskid}</li>
                     </div>
                 );
             })}
