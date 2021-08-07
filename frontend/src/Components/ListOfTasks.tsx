@@ -26,7 +26,8 @@ function ListOfTasks() {
                         </button>
                         <li>Created: {task.timestampCreated}</li>
                         <li>Updated: {task.timestampUpdated}</li>
-                        Trackings of this Task:
+                        <li></li>
+                        <div>Trackings of this Task:</div>
                         <ListOfTrackingsByTask{...task}/>
                     </div>
                 );
