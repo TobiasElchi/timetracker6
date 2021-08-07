@@ -1,10 +1,12 @@
 import React from "react";
 import {GET_ALL_LABELS} from "../Graphql/Queries";
-import {DELETE_LABEL, UPDATE_LABELNAME} from "../Graphql/Mutations";
+import {DELETE_LABEL, UPDATE_LABELNAME} from "../Graphql/MutationsLabel";
 import {useQuery, useMutation} from "@apollo/client";
 
 function ListOfLabels() {
-    const {data} = useQuery(GET_ALL_LABELS);
+    const {data} = useQuery(GET_ALL_LABELS, {
+        pollInterval: 500,
+    });
     const [deleteLabel, {}] = useMutation(DELETE_LABEL);
     const [updateLabelName, {error}] = useMutation(UPDATE_LABELNAME);
 
@@ -14,20 +16,22 @@ function ListOfLabels() {
             data.getAllLabels.map((label: any) => {
                 return (
                     <div>
-                        <h2>{label.name}</h2>
+                        <div className="Separator"/>
+                        <div className="LabelBox">{label.name}</div>
                         <button
                             onClick={() => {
                                 deleteLabel({variables: {id: label.id}});
                             }}
                         > Delete Label
                         </button>
-                        <button
+                        {/*<button
                             onClick={() => {
                                 updateLabelName({variables: {name: "updatedLabel", id: label.id}});
                             }}
                         > Update Labelname
-                        </button>
-                        Created: {label.timestampCreated} Updated: {label.timestampUpdated}
+                        </button>*/}
+                        <li>Created: {label.timestampCreated}</li>
+                        <li>Updated: {label.timestampUpdated}</li>
                     </div>
                 );
             })}

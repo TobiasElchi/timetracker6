@@ -12,12 +12,12 @@ import {
   UPDATE_TASK_DESCRIPTION,
   UPDATE_TASKNAME
 } from "./Mutations/TaskMutations";
-import {GET_ALL_TRACKINGS} from "./Queries/TrackingQueries";
+import {GET_ALL_TRACKINGS, GET_ALL_TRACKINGS_BY_TASKID} from "./Queries/TrackingQueries";
 import {
   CREATE_TRACKING,
   DELETE_TRACKING,
-  UPDATE_TRACKING_DESCRIPTION, UPDATE_TRACKING_EDNDTIME,
-  UPDATE_TRACKING_STARTTIME
+  UPDATE_TRACKING_DESCRIPTION, UPDATE_TRACKING_ENDTIME,
+  UPDATE_TRACKING_STARTTIME, UPDATE_TRACKING_TASKID
 } from "./Mutations/TrackingMutations";
 
 //Main query for startup
@@ -27,6 +27,7 @@ const RootQuery = new GraphQLObjectType({
     getAllLabels: GET_ALL_LABELS,
     getAllTasks: GET_ALL_TASKS,
     getAllTrackings: GET_ALL_TRACKINGS,
+    getAllTrackingsByTaskID: GET_ALL_TRACKINGS_BY_TASKID,
   },
 });
 
@@ -46,7 +47,8 @@ const Mutation = new GraphQLObjectType({
     deleteTracking: DELETE_TRACKING,
     updateTrackingDescription: UPDATE_TRACKING_DESCRIPTION,
     updateTrackingStarttime: UPDATE_TRACKING_STARTTIME,
-    updateTrackingEndtime: UPDATE_TRACKING_EDNDTIME,
+    updateTrackingEndtime: UPDATE_TRACKING_ENDTIME,
+    updateTrackingTaskID: UPDATE_TRACKING_TASKID,
     createTracking: CREATE_TRACKING,
     
   },

@@ -1,6 +1,7 @@
-import {BaseEntity, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
-import {TrackingType} from "../Schema/TypeDefs/types";
+import {BaseEntity, Column, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {TrackingEntity} from "./TrackingEntity";
+import {LabelEntity} from "./LabelEntity";
+import {JoinTable} from "typeorm";
 
 @Entity()
 export class TaskEntity extends BaseEntity {
@@ -18,4 +19,11 @@ export class TaskEntity extends BaseEntity {
 
   @Column()
   timestampUpdated!: string;
+
+/*  @OneToMany(() => TrackingEntity, tracking => tracking.task)
+  trackings!: TrackingEntity[];*/
+
+  @ManyToMany(() => LabelEntity)
+  @JoinTable()
+  labels!: LabelEntity[]
 }

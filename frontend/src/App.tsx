@@ -1,13 +1,12 @@
 import React from "react";
 import {ApolloClient, InMemoryCache, ApolloProvider} from "@apollo/client";
 import "./App.css";
-import CreateLabel from "./Components/CreateLabel";
-import ListOfLabels from "./Components/ListOfLabels";
 
 import {Link, Switch, Route, BrowserRouter, Redirect} from "react-router-dom";
 import {urls} from "./Utils/urls";
 import {TasksPage} from "./pages/TasksPage";
 import {LabelsPage} from "./pages/LabelsPage";
+import {TrackingsPage} from "./pages/TrackingsPage";
 
 function App() {
     const client = new ApolloClient({
@@ -21,12 +20,15 @@ function App() {
                 <header className="App-header">
                     <h1>Task Manager</h1>
                     <nav>
-                        <ul>
+                        <ul className= "LinkList">
                             <li>
-                                <Link to={urls.tasks}>Tasks</Link>
+                                <Link className="a"to={urls.tasks}>Tasks</Link>
                             </li>
                             <li>
                                 <Link to={urls.labels}>Labels</Link>
+                            </li>
+                            <li>
+                                <Link to={urls.trackings}>Trackings</Link>
                             </li>
                         </ul>
                     </nav>
@@ -38,8 +40,11 @@ function App() {
                     <Route path={urls.labels}>
                         <LabelsPage/>
                     </Route>
+                    <Route path={urls.trackings}>
+                        <TrackingsPage/>
+                    </Route>
                     <Route>
-                        <Redirect to={urls.labels}/>
+                        <Redirect to={urls.tasks}/>
                     </Route>
                 </Switch>
             </ApolloProvider>

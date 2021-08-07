@@ -1,7 +1,7 @@
 import { GraphQLID, GraphQLString } from "graphql";
 import { MessageType } from "../TypeDefs/Messages";
 import {TaskEntity} from "../../Entities/TaskEntity";
-import {TaskType} from "../TypeDefs/types";
+import {TaskType} from "../TypeDefs/TaskType";
 
 //Mutations => Create,Update,Delete
 export const CREATE_TASK = {

@@ -16,7 +16,7 @@ const main = async () => {
     password: "123456",
     logging: true,
     synchronize: true,
-    entities: [TaskEntity, LabelEntity, TrackingEntity] //Needed for every table
+    entities: [TaskEntity, LabelEntity, TrackingEntity]
   });
 
   const app = express();

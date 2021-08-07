@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import {CREATE_TASK} from "../Graphql/Mutations";
 import {useMutation} from "@apollo/client";
+import {CREATE_TASK} from "../Graphql/MutationsTask";
 
 function CreateTask() {
     const [name, setName] = useState("");

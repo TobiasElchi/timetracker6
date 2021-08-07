@@ -1,4 +1,4 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {BaseEntity, Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 
 @Entity()
 export class TrackingEntity extends BaseEntity {
@@ -19,4 +19,12 @@ export class TrackingEntity extends BaseEntity {
 
   @Column()
   timestampUpdated!: string;
+
+  @Column()
+  timeSpent!: string;
+
+/*  @ManyToOne(() => TaskEntity, task => task.trackings)
+  task!: TaskEntity;*/
+  @Column()
+  taskid!:string;
 }

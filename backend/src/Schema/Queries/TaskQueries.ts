@@ -1,6 +1,7 @@
 import { GraphQLList } from "graphql";
-import {TaskType} from "../TypeDefs/types";
+
 import {TaskEntity} from "../../Entities/TaskEntity";
+import {TaskType} from "../TypeDefs/TaskType";
 
 //Queries => Read only
 

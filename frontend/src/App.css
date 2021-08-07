@@ -1,10 +1,36 @@
 .App-header {
-    background-color: #282c34;
+    background-color: beige;
     min-height: 50px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     font-size: calc(2px + 2vmin);
-    color: white;
+    color: darkgray;
+}
+.TrackingListBox{
+    font-size: calc(4px + 2vmin);
+    border-top: 1px solid grey;
+}
+
+.TaskBox{
+    border-top: 2px solid black;
+    font-size: calc(6px + 2vmin);
+}
+
+.TrackingBox{
+    border-top: 2px solid black;
+    font-size: calc(6px + 2vmin);
+}
+
+.LabelBox{
+    border-top: 2px solid black;
+    font-size: calc(6px + 2vmin);
+}
+.Separator{
+    height: 30px
+}
+
+.LinkList.a. {
+    color:#93AFBF;
 }

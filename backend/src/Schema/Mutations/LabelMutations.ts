@@ -1,8 +1,7 @@
 import { GraphQLID, GraphQLString } from "graphql";
-import { LabelType } from "../TypeDefs/types";
 import { MessageType } from "../TypeDefs/Messages";
 import { LabelEntity } from "../../Entities/LabelEntity";
-import {DateUtils} from "typeorm/util/DateUtils";
+import {LabelType} from "../TypeDefs/LabelType";
 
 //Mutations => Create,Update,Delete
 export const CREATE_LABEL = {
