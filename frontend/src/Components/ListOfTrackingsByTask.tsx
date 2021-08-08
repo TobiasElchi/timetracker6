@@ -5,10 +5,9 @@ import {TaskEntity} from "../../../backend/src/Entities/TaskEntity";
 import {DELETE_TRACKING, UPDATE_TRACKING_STARTTIME, UPDATE_TRACKING_ENDTIME} from "../Graphql/MutationsTracking";
 
 function ListOfTrackingsByTask(task: TaskEntity) {
-    const {data} = useQuery(GET_ALL_TRACKINGS_BY_TASKID, {
+    const {data, refetch} = useQuery(GET_ALL_TRACKINGS_BY_TASKID, {
         variables: {
             taskid: task.id,
-            pollInterval: 500
         },
     });
     const [deleteTracking, {}] = useMutation(DELETE_TRACKING);
@@ -26,18 +25,21 @@ function ListOfTrackingsByTask(task: TaskEntity) {
                         <button id={tracking.id}
                                 onClick={() => {
                                     deleteTracking({variables: {id: tracking.id}});
+                                    refetch()
                                 }}
                         > Delete Tracking
                         </button>
                         <button
                             onClick={() => {
                                 updateTrackingStarttime({variables: {id: tracking.id}});
+                                refetch()
                             }}
                         > Start Tracking
                         </button>
                         <button
                             onClick={() => {
                                 updateTrackingEndtime({variables: {id: tracking.id}});
+                                refetch()
                             }}
                         > Stop Tracking
                         </button>

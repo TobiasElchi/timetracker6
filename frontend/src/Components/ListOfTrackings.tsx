@@ -4,8 +4,8 @@ import {DELETE_TRACKING, UPDATE_TRACKING_STARTTIME, UPDATE_TRACKING_ENDTIME} fro
 import {useQuery, useMutation} from "@apollo/client";
 
 function ListOfTrackings() {
-    const {data} = useQuery(GET_ALL_TRACKINGS, {
-        pollInterval: 500,
+    const {data, refetch} = useQuery(GET_ALL_TRACKINGS, {
+        pollInterval:500
     });
     const [deleteTracking, {}] = useMutation(DELETE_TRACKING);
     const [updateTrackingStarttime] = useMutation(UPDATE_TRACKING_STARTTIME);
@@ -24,18 +24,21 @@ function ListOfTrackings() {
                         <button id={tracking.id}
                                 onClick={() => {
                                     deleteTracking({variables: {id: tracking.id}});
+                                    refetch()
                                 }}
                         > Delete Tracking
                         </button>
                         <button
                             onClick={() => {
-                                updateTrackingStarttime({variables: {id: tracking.id}});
+                                updateTrackingStarttime({variables: {id: tracking.id}})
+                                refetch()
                             }}
                         > Start Tracking
                         </button>
                         <button
                             onClick={() => {
                                 updateTrackingEndtime({variables: {id: tracking.id}});
+                                refetch()
                             }}
                         > Stop Tracking
                         </button>

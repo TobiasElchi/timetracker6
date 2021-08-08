@@ -4,8 +4,8 @@ import {DELETE_LABEL, UPDATE_LABELNAME} from "../Graphql/MutationsLabel";
 import {useQuery, useMutation} from "@apollo/client";
 
 function ListOfLabels() {
-    const {data} = useQuery(GET_ALL_LABELS, {
-        pollInterval: 500,
+    const {data, refetch} = useQuery(GET_ALL_LABELS, {
+        pollInterval:500
     });
     const [deleteLabel, {}] = useMutation(DELETE_LABEL);
     const [updateLabelName, {error}] = useMutation(UPDATE_LABELNAME);
@@ -21,6 +21,7 @@ function ListOfLabels() {
                         <button
                             onClick={() => {
                                 deleteLabel({variables: {id: label.id}});
+                                refetch()
                             }}
                         > Delete Label
                         </button>

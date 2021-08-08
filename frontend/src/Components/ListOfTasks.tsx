@@ -5,8 +5,8 @@ import {useQuery, useMutation} from "@apollo/client";
 import ListOfTrackingsByTask from "./ListOfTrackingsByTask";
 
 function ListOfTasks() {
-    const {data} = useQuery(GET_ALL_TASKS, {
-        pollInterval: 500
+    const {data, refetch} = useQuery(GET_ALL_TASKS, {
+        pollInterval:500
     });
     const [deleteTask, {}] = useMutation(DELETE_TASK);
     return (
@@ -20,6 +20,7 @@ function ListOfTasks() {
                         <button
                             onClick={() => {
                                 deleteTask({variables: {id: task.id}});
+                                refetch()
                             }}
                         > Delete Task
                         </button>
