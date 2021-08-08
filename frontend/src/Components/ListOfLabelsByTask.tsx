@@ -6,6 +6,7 @@ import {DELETE_LABEL} from "../Graphql/MutationsLabel";
 
 function ListOfLabelsByTask(task: TaskEntity) {
     const {data, refetch} = useQuery(GET_ALL_LABELS_BY_TASKID, {
+        pollInterval: 500,
         variables: {
             taskid: task.id,
         },

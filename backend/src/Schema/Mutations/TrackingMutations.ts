@@ -40,13 +40,33 @@ export const UPDATE_TRACKING_DESCRIPTION = {
         if (!tracking) {
             throw new Error("TRACKING NOT FOUND");
         }
-        const trackingID = tracking?.id;
         await TrackingEntity.update({id: id}, {description: description});
         //Automatically update the timestamp
         const timeElapsed = Date.now()
         const currentTime = new Date(timeElapsed).toUTCString()
         await TrackingEntity.update({id: id}, {timestampUpdated: currentTime});
-        await TrackingEntity.update({id: id}, {description: description});
+        return {successful: true, message: "TRACKING DESCRIPTION UPDATED"};
+    },
+};
+
+export const UPDATE_TRACKING_TIMESPENT = {
+    type: MessageType,
+    args: {
+        timeSpent: {type: GraphQLString},
+        id: {type: GraphQLID},
+        timestampUpdated: {type: GraphQLString},
+    },
+    async resolve(parent: any, args: any) {
+        const {timeSpent, id} = args;
+        const tracking = await TrackingEntity.findOne({id: id});
+        if (!tracking) {
+            throw new Error("TRACKING NOT FOUND");
+        }
+        await TrackingEntity.update({id: id}, {timeSpent: timeSpent});
+        //Automatically update the timestamp
+        const timeElapsed = Date.now()
+        const currentTime = new Date(timeElapsed).toUTCString()
+        await TrackingEntity.update({id: id}, {timestampUpdated: currentTime});
         return {successful: true, message: "TRACKING DESCRIPTION UPDATED"};
     },
 };
@@ -64,7 +84,6 @@ export const UPDATE_TRACKING_STARTTIME = {
         if (!tracking) {
             throw new Error("TRACKING NOT FOUND");
         }
-        const trackingID = tracking?.id;
         //Automatically update the timestamp
         const timeElapsed = Date.now()
         const currentTime = new Date(timeElapsed).toUTCString()
@@ -86,7 +105,6 @@ export const UPDATE_TRACKING_ENDTIME = {
         if (!tracking) {
             throw new Error("TRACKING NOT FOUND");
         }
-        const trackingID = tracking?.id;
         //Automatically update the timestamp
         const timeElapsed = Date.now()
         const currentTime = new Date(timeElapsed).toUTCString()
@@ -122,12 +140,10 @@ export const UPDATE_TRACKING_TASKID = {
             throw new Error("TRACKING NOT FOUND");
         }
         await TrackingEntity.update({id: trackingid}, {taskid: taskid});
-
         //Automatically update the timestamp
         const timeElapsed = Date.now()
         const currentTime = new Date(timeElapsed).toUTCString()
         await TrackingEntity.update({id: trackingid}, {timestampUpdated: currentTime});
-        await TrackingEntity.update({id: trackingid}, {taskid: taskid});
         return {successful: true, message: "TRACKING TASKID UPDATED"};
     },
 };

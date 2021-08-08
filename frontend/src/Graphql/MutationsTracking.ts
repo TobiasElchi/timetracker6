@@ -11,13 +11,27 @@ export const CREATE_TRACKING = gql`
   }
 `;
 
+export const UPDATE_TRACKING_TIMESPENT = gql`
+  mutation updateTrackingTimeSpent(
+    $id: ID!
+    $timeSpent: String!
+  ) {
+    updateTrackingTimeSpent(
+      id: $id
+      timeSpent: $timeSpent
+    ) {
+      message
+    }
+  }
+`;
+
 export const UPDATE_TRACKING_DESCRIPTION = gql`
   mutation updateTrackingDescription(
     $id: ID!
     $description: String!
   ) {
     updateTrackingDescription(
-      id: id
+      id: $id
       description: $description
     ) {
       message

@@ -17,7 +17,7 @@ import {
     CREATE_TRACKING,
     DELETE_TRACKING,
     UPDATE_TRACKING_DESCRIPTION, UPDATE_TRACKING_ENDTIME,
-    UPDATE_TRACKING_STARTTIME, UPDATE_TRACKING_TASKID
+    UPDATE_TRACKING_STARTTIME, UPDATE_TRACKING_TASKID, UPDATE_TRACKING_TIMESPENT
 } from "./Mutations/TrackingMutations";
 
 //Main query for startup
@@ -49,6 +49,7 @@ const Mutation = new GraphQLObjectType({
         updateTrackingDescription: UPDATE_TRACKING_DESCRIPTION,
         updateTrackingStarttime: UPDATE_TRACKING_STARTTIME,
         updateTrackingEndtime: UPDATE_TRACKING_ENDTIME,
+        updateTrackingTimeSpent: UPDATE_TRACKING_TIMESPENT,
         updateTrackingTaskID: UPDATE_TRACKING_TASKID,
         createTracking: CREATE_TRACKING,
     },

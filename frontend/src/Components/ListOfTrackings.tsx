@@ -1,7 +1,15 @@
 import React from "react";
 import {GET_ALL_TRACKINGS} from "../Graphql/Queries";
-import {DELETE_TRACKING, UPDATE_TRACKING_STARTTIME, UPDATE_TRACKING_ENDTIME} from "../Graphql/MutationsTracking";
+import {
+    DELETE_TRACKING,
+    UPDATE_TRACKING_STARTTIME,
+    UPDATE_TRACKING_ENDTIME,
+    UPDATE_TRACKING_TIMESPENT
+} from "../Graphql/MutationsTracking";
 import {useQuery, useMutation} from "@apollo/client";
+import {calculateTimeDifference} from "./calculateTimeDifference";
+import {waitFor} from "@testing-library/react";
+import {msToTime} from "./msToTime";
 
 function ListOfTrackings() {
     const {data, refetch} = useQuery(GET_ALL_TRACKINGS, {
@@ -10,6 +18,7 @@ function ListOfTrackings() {
     const [deleteTracking, {}] = useMutation(DELETE_TRACKING);
     const [updateTrackingStarttime] = useMutation(UPDATE_TRACKING_STARTTIME);
     const [updateTrackingEndtime] = useMutation(UPDATE_TRACKING_ENDTIME);
+    const [updateTrackingTimeSpent] = useMutation(UPDATE_TRACKING_TIMESPENT);
 
     return (
         <div>
@@ -37,8 +46,9 @@ function ListOfTrackings() {
                         </button>
                         <button
                             onClick={() => {
-                                updateTrackingEndtime({variables: {id: tracking.id}});
-                                refetch()
+                                updateTrackingEndtime({variables: {id: tracking.id}})                                ;
+                                var timeSpent = calculateTimeDifference(tracking.starttime);
+                                updateTrackingTimeSpent({variables: {id: tracking.id, timeSpent: timeSpent}})
                             }}
                         > Stop Tracking
                         </button>
@@ -46,6 +56,7 @@ function ListOfTrackings() {
                         <li>Updated: {tracking.timestampUpdated}</li>
                         <li>Started: {tracking.starttime}</li>
                         <li>Ended: {tracking.endtime}</li>
+                        <li>Total time spent: {msToTime(tracking.timeSpent)}</li>
                         <li>ID of corresponding Task: {tracking.taskid}</li>
                     </div>
                 );

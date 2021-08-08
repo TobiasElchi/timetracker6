@@ -10,6 +10,7 @@ export const TrackingType = new GraphQLObjectType({
         description: {type: GraphQLString},
         timestampCreated: {type: GraphQLString},
         timestampUpdated: {type: GraphQLString},
-        taskid: {type: GraphQLString}
+        taskid: {type: GraphQLString},
+        timeSpent: {type: GraphQLString}
     }),
 });

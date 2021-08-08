@@ -46,6 +46,7 @@ export const GET_ALL_TRACKINGS_BY_TASKID = gql`
       timestampUpdated
       starttime
       endtime
+      timeSpent
     }
   }
 `;
@@ -60,6 +61,7 @@ export const GET_ALL_TRACKINGS = gql`
       starttime
       endtime
       taskid
+      timeSpent
     }
   }
 `;
