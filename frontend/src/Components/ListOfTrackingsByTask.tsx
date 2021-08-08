@@ -10,6 +10,7 @@ import {
 } from "../Graphql/MutationsTracking";
 import {msToTime} from "./msToTime";
 import {calculateTimeDifference} from "./calculateTimeDifference";
+import {transcode} from "buffer";
 
 function ListOfTrackingsByTask(task: TaskEntity) {
     const {data, refetch} = useQuery(GET_ALL_TRACKINGS_BY_TASKID, {
@@ -38,14 +39,14 @@ function ListOfTrackingsByTask(task: TaskEntity) {
                                 }}
                         > Delete Tracking
                         </button>
-                        <button
+                        <button disabled={tracking.starttime != "not started"}
                             onClick={() => {
                                 updateTrackingStarttime({variables: {id: tracking.id}});
                                 refetch()
                             }}
                         > Start Tracking
                         </button>
-                        <button
+                        <button disabled={tracking.starttime == "not started"||tracking.endtime != "not ended"}
                             onClick={() => {
                                 updateTrackingEndtime({variables: {id: tracking.id}});
                                 var timeSpent = calculateTimeDifference(tracking.starttime);

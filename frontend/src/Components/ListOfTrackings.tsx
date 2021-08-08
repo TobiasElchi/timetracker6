@@ -37,14 +37,14 @@ function ListOfTrackings() {
                                 }}
                         > Delete Tracking
                         </button>
-                        <button
+                        <button disabled={tracking.starttime != "not started"}
                             onClick={() => {
                                 updateTrackingStarttime({variables: {id: tracking.id}})
                                 refetch()
                             }}
                         > Start Tracking
                         </button>
-                        <button
+                        <button disabled={tracking.starttime == "not started"||tracking.endtime != "not ended"}
                             onClick={() => {
                                 updateTrackingEndtime({variables: {id: tracking.id}})                                ;
                                 var timeSpent = calculateTimeDifference(tracking.starttime);
