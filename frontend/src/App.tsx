@@ -22,7 +22,7 @@ function App() {
                     <nav>
                         <ul className="LinkList">
                             <li>
-                                <Link className="a" to={urls.tasks}>Tasks</Link>
+                                <Link to={urls.tasks}>Tasks</Link>
                             </li>
                             <li>
                                 <Link to={urls.labels}>Labels</Link>
