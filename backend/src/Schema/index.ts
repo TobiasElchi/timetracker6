@@ -1,5 +1,5 @@
 import {GraphQLObjectType, GraphQLSchema} from "graphql";
-import {GET_ALL_LABELS} from "./Queries/LabelQueries";
+import {GET_ALL_LABELS, GET_ALL_LABELS_BY_TASKID} from "./Queries/LabelQueries";
 import {
     CREATE_LABEL,
     DELETE_LABEL,
@@ -28,6 +28,7 @@ const RootQuery = new GraphQLObjectType({
         getAllTasks: GET_ALL_TASKS,
         getAllTrackings: GET_ALL_TRACKINGS,
         getAllTrackingsByTaskID: GET_ALL_TRACKINGS_BY_TASKID,
+        getAllLabelsByTaskID: GET_ALL_LABELS_BY_TASKID,
     },
 });
 

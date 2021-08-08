@@ -1,4 +1,5 @@
-import {GraphQLObjectType, GraphQLID, GraphQLString} from "graphql";
+import {GraphQLObjectType, GraphQLID, GraphQLString, GraphQLList} from "graphql";
+import {TaskType} from "./TaskType";
 
 export const LabelType = new GraphQLObjectType({
     name: "Label",
@@ -7,5 +8,6 @@ export const LabelType = new GraphQLObjectType({
         name: {type: GraphQLString},
         timestampCreated: {type: GraphQLString},
         timestampUpdated: {type: GraphQLString},
+        taskid: {type: GraphQLString}
     }),
 });

@@ -8,14 +8,21 @@
     font-size: calc(2px + 2vmin);
     color: darkgray;
 }
+.LabelAsPartOfTask{
+    display: flex;
+    flex-direction: row;
+}
 .TrackingListBox{
     font-size: calc(4px + 2vmin);
     border-top: 1px solid grey;
 }
 
 .TaskBox{
+    display: flex;
+    flex-direction: row;
     border-top: 2px solid black;
-    font-size: calc(6px + 2vmin);
+    font-size: calc(10px + 2vmin);
+    font-weight: bold;
 }
 
 .TrackingBox{
@@ -27,8 +34,21 @@
     margin-left: 5%;
 }
 
+.miniButton{
+    margin-left: 20px;
+}
+
+.LabelBoxAsPartOfTask{
+    margin-left: 20px;
+    color: darkslategray;
+    padding: 2px;
+    background-color: beige;
+    border: 1px solid gray;
+    font-size: calc(6px + 2vmin);
+}
+
 .LabelBox{
-    border-top: 2px solid black;
+    border: 1px solid grey;
     font-size: calc(6px + 2vmin);
 }
 .Separator{

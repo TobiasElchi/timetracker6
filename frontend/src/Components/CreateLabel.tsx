@@ -5,35 +5,51 @@ import {showSnackbar} from "./ShowSnackbar";
 
 function CreateLabel() {
     const [name, setName] = useState("");
-    const [createTask, {error}] = useMutation(CREATE_LABEL);
+    const [taskid, setTaskid] = useState("");
+    const [createLabel, {error}] = useMutation(CREATE_LABEL);
     return (
         <div className="createLabel">
             <input
-                id={"InputfieldCreateLabel"}
+                id={"InputfieldCreateLabelName"}
                 type="text"
                 placeholder="name"
                 onChange={(event) => {
                     setName(event.target.value);
                 }}
             />
+            <input
+                id={"InputfieldCreateLabelTaskID"}
+                type="number"
+                placeholder="Task-ID"
+                onChange={(event) => {
+                    setTaskid(event.target.value);
+                }}
+            />
             <button
                 onClick={() => {
-                    if (name.length>0) {
-                        createTask({
-                            variables: {
-                                name: name,
-                            },
-                        });
-                    }else {
+                    if (name.length > 0) {
+                        if (taskid.length > 0 && taskid.length < 3 && !isNaN(parseInt(taskid))){
+                            createLabel({
+                                variables: {
+                                    name: name,
+                                    taskid: taskid
+                                },
+                            });
+                        } else {
+                            // @ts-ignore
+                            document.getElementById("InputfieldCreateLabelTaskID").focus()
+                            showSnackbar(document.getElementById("snackbar2"))
+                        }
+                    } else {
                         // @ts-ignore
-                        document.getElementById("InputfieldCreateLabel").focus()
+                        document.getElementById("InputfieldCreateLabelName").focus()
                         showSnackbar(document.getElementById("snackbar"))
                     }
                 }}
-            >
-                Create Label
+            >Create Label
             </button>
             <div id="snackbar">{"Please fill out all Information"}</div>
+            <div id="snackbar2">Please enter 2-digit number</div>
         </div>
     );
 }

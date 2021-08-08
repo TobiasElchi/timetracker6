@@ -2,18 +2,26 @@ import {GraphQLID, GraphQLString} from "graphql";
 import {MessageType} from "../TypeDefs/Messages";
 import {LabelEntity} from "../../Entities/LabelEntity";
 import {LabelType} from "../TypeDefs/LabelType";
+import {TrackingType} from "../TypeDefs/TrackingType";
+import {TrackingEntity} from "../../Entities/TrackingEntity";
 
 //Mutations => Create,Update,Delete
 export const CREATE_LABEL = {
     type: LabelType,
     args: {
         name: {type: GraphQLString},
+        taskid: {type: GraphQLString}
     },
     async resolve(parent: any, args: any) {
-        const {name} = args;
+        const {name, taskid} = args;
         const timeElapsed = Date.now()
         const currentTime = new Date(timeElapsed).toUTCString()
-        await LabelEntity.insert({name, timestampCreated: currentTime, timestampUpdated: currentTime});
+        await LabelEntity.insert({
+            name,
+            taskid,
+            timestampCreated: currentTime,
+            timestampUpdated: currentTime,
+        });
         return args;
     },
 };

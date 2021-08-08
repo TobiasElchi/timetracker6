@@ -3,6 +3,8 @@ import {GET_ALL_TASKS} from "../Graphql/Queries";
 import {DELETE_TASK} from "../Graphql/MutationsTask";
 import {useQuery, useMutation} from "@apollo/client";
 import ListOfTrackingsByTask from "./ListOfTrackingsByTask";
+import AddTrackingToTask from "./AddTrackingToTask";
+import ListOfLabelsByTask from "./ListOfLabelsByTask";
 
 function ListOfTasks() {
     const {data, refetch} = useQuery(GET_ALL_TASKS, {
@@ -16,7 +18,10 @@ function ListOfTasks() {
                 return (
                     <div>
                         <div className="Separator"/>
-                        <div className="TaskBox">Task {task.id}: {task.name}</div>
+                        <div className="TaskBox">
+                            {task.name}
+                            <ListOfLabelsByTask{...task}/>
+                        </div>
                         <button
                             onClick={() => {
                                 deleteTask({variables: {id: task.id}});
@@ -24,11 +29,13 @@ function ListOfTasks() {
                             }}
                         > Delete Task
                         </button>
+                        <li>{task.description}</li>
                         <li>Created: {task.timestampCreated}</li>
                         <li>Updated: {task.timestampUpdated}</li>
                         <li>ID: {task.id}</li>
                         <li></li>
                         <div>Trackings of this Task:</div>
+                        <AddTrackingToTask{...task}/>
                         <ListOfTrackingsByTask{...task}/>
                     </div>
                 );

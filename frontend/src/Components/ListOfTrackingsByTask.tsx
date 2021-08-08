@@ -3,6 +3,7 @@ import {useQuery, useMutation} from "@apollo/client";
 import {GET_ALL_TRACKINGS_BY_TASKID} from "../Graphql/Queries";
 import {TaskEntity} from "../../../backend/src/Entities/TaskEntity";
 import {DELETE_TRACKING, UPDATE_TRACKING_STARTTIME, UPDATE_TRACKING_ENDTIME} from "../Graphql/MutationsTracking";
+import CreateTracking from "./CreateTracking";
 
 function ListOfTrackingsByTask(task: TaskEntity) {
     const {data, refetch} = useQuery(GET_ALL_TRACKINGS_BY_TASKID, {
@@ -13,6 +14,8 @@ function ListOfTrackingsByTask(task: TaskEntity) {
     const [deleteTracking, {}] = useMutation(DELETE_TRACKING);
     const [updateTrackingStarttime] = useMutation(UPDATE_TRACKING_STARTTIME);
     const [updateTrackingEndtime] = useMutation(UPDATE_TRACKING_ENDTIME);
+    const passTaskId = task.id.toString()
+
     return (
         <div>
             {data &&

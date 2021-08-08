@@ -15,6 +15,9 @@ export class LabelEntity extends BaseEntity {
   @Column()
   timestampUpdated!: string;
 
+  @Column()
+  taskid!: string;
+
   @ManyToMany(() => TaskEntity)
   tasks!:TaskEntity[];
 }

@@ -17,7 +17,7 @@ function ListOfLabels() {
                 return (
                     <div>
                         <div className="Separator"/>
-                        <div className="LabelBox">{label.name}</div>
+                        <div className="TrackingBox">{label.name}</div>
                         <button
                             onClick={() => {
                                 deleteLabel({variables: {id: label.id}});
@@ -33,6 +33,8 @@ function ListOfLabels() {
                         </button>*/}
                         <li>Created: {label.timestampCreated}</li>
                         <li>Updated: {label.timestampUpdated}</li>
+                        <li>ID of corresponding Task: {label.taskid}</li>
+
                     </div>
                 );
             })}

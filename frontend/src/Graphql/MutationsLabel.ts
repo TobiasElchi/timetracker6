@@ -2,8 +2,8 @@ import {gql} from "@apollo/client";
 
 //TODO: Prüfen ob Name vergeben->im backend
 export const CREATE_LABEL = gql`
-  mutation createLabel($name: String!) {
-    createLabel(name: $name) {
+  mutation createLabel($name: String!, $taskid: String!) {
+    createLabel(name: $name, taskid: $taskid) {
       id
       name
       timestampCreated
