@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {useMutation} from "@apollo/client";
 import {CREATE_TRACKING} from "../Graphql/MutationsTracking";
+import {showSnackbar} from "./ShowSnackbar";
 
 function CreateTracking() {
     const [description, setdescription] = useState("");
@@ -10,6 +11,7 @@ function CreateTracking() {
     return (
         <div className="createTracking">
             <input
+                id={"InputfieldCreateTrackingDescription"}
                 type="text"
                 placeholder="description"
                 onChange={(event) => {
@@ -17,7 +19,8 @@ function CreateTracking() {
                 }}
             />
             <input
-                type="text"
+                id={"InputfieldCreateTrackingTaskID"}
+                type={"number"}
                 placeholder="Task-ID"
                 onChange={(event) => {
                     settaskid(event.target.value);
@@ -25,16 +28,29 @@ function CreateTracking() {
             />
             <button
                 onClick={() => {
-                    createTracking({
-                        variables: {
-                            description: description,
-                            taskid: taskid
-                        },
-                    });
+                    if (description.length > 0) {
+                        if (taskid.length > 0 && taskid.length < 3 && parseInt(taskid)!=NaN){
+                            createTracking({
+                                variables: {
+                                    description: description,
+                                    taskid: taskid
+                                },
+                            });
+                        } else {
+                            // @ts-ignore
+                            document.getElementById("InputfieldCreateTrackingTaskID").focus()
+                            showSnackbar(document.getElementById("snackbar2"))
+                        }
+                    } else {
+                        // @ts-ignore
+                        document.getElementById("InputfieldCreateTrackingDescription").focus()
+                        showSnackbar(document.getElementById("snackbar"))
+                    }
                 }}
-            >
-                Create Tracking
+            >Create Tracking
             </button>
+            <div id="snackbar">Please fill out all Information</div>
+            <div id="snackbar2">Please enter 2-digit number</div>
         </div>
     );
 }

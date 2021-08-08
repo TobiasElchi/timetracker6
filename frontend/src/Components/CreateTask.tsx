@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {useMutation} from "@apollo/client";
 import {CREATE_TASK} from "../Graphql/MutationsTask";
+import {showSnackbar} from "./ShowSnackbar";
 
 function CreateTask() {
     const [name, setName] = useState("");
@@ -10,6 +11,7 @@ function CreateTask() {
     return (
         <div className="createTask">
             <input
+                id={"InputfieldCreateTaskName"}
                 type="text"
                 placeholder="name"
                 onChange={(event) => {
@@ -17,6 +19,7 @@ function CreateTask() {
                 }}
             />
             <input
+                id={"InputfieldCreateTaskDescription"}
                 type="text"
                 placeholder="description"
                 onChange={(event) => {
@@ -25,16 +28,29 @@ function CreateTask() {
             />
             <button
                 onClick={() => {
-                    createTask({
-                        variables: {
-                            name: name,
-                            description: description,
-                        },
-                    });
+                    if (name.length > 0) {
+                        if (description.length > 0) {
+                            createTask({
+                                variables: {
+                                    name: name,
+                                    description: description,
+                                },
+                            });
+                        } else {
+                            // @ts-ignore
+                            document.getElementById("InputfieldCreateTaskDescription").focus()
+                            showSnackbar(document.getElementById("snackbar"))
+                        }
+                    } else {
+                        // @ts-ignore
+                        document.getElementById("InputfieldCreateTaskName").focus()
+                        showSnackbar(document.getElementById("snackbar"))
+                    }
                 }}
             >
                 Create Task
             </button>
+            <div id="snackbar">Please fill out all Information</div>
         </div>
     );
 }
