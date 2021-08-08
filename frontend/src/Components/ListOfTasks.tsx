@@ -5,6 +5,7 @@ import {useQuery, useMutation} from "@apollo/client";
 import ListOfTrackingsByTask from "./ListOfTrackingsByTask";
 import AddTrackingToTask from "./AddTrackingToTask";
 import ListOfLabelsByTask from "./ListOfLabelsByTask";
+import AddLabelToTask from "./AddLabelToTask";
 
 function ListOfTasks() {
     const {data, refetch} = useQuery(GET_ALL_TASKS, {
@@ -21,6 +22,7 @@ function ListOfTasks() {
                         <div className="TaskBox">
                             {task.name}
                             <ListOfLabelsByTask{...task}/>
+                            <AddLabelToTask{...task}/>
                         </div>
                         <button
                             onClick={() => {
