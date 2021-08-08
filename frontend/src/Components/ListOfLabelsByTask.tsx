@@ -12,7 +12,6 @@ function ListOfLabelsByTask(task: TaskEntity) {
     });
 
     const [deleteLabel, {}] = useMutation(DELETE_LABEL);
-    const passTaskId = task.id.toString()
 
     return (
         <div className="LabelAsPartOfTask">
